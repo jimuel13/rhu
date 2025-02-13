@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+    <script src="/src/script.js"></script>
+</head>
+<body>
+    <div class="flex flex-col h-screen">
+        <!-- Top navigation -->
+        <div class="bg-white p-2">
+          <div class="flex items-center">
+            <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+            <div class="ml-auto flex items-center space-x-4">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+              <span class="text-zinc-800 text-1xl">Admin_Cashier</span>
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="ml-2 h-10 w-10" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white pt-5 shadow-md">
+              <ul class="space-y-5 text-1xl">
+                <li><a href="cashier.html" class="text-zinc-700 pl-10">Services List</a></li>
+                <li class="bg-blue-600 rounded-r-full"><a href="cashier_transaction.html" class="text-white block py-2 pl-10">Transaction</a></li>
+              </ul>
+            </nav>
+            <main class="flex-1 bg-blue-200 p-6">
+                <div class="flex justify-between items-center mb-4">
+                  <h1 class="text-2xl font-bold">Transactions</h1>
+                </div>
+              
+                <!-- Sort and Search bar -->
+                <div class="flex justify-between mb-4">
+                  <!-- Sort Dropdown -->
+                  <div class="flex items-center">
+                    <label for="sort" class="mr-2">Department:</label>
+                    <select id="sort" class="border border-zinc-300 rounded p-2 w-[130px]">
+                      <option>Vaccination</option>
+                      <option>Consultation</option>
+                    </select>
+                  </div>
+              
+                  <!-- Search bar aligned to the right -->
+                  <div>
+                    <input type="text" placeholder="Search e.g. name" class="border border-zinc-300 rounded p-2 w-80" />
+                  </div>
+                </div>
+              
+                <!-- Table -->
+                <table class="min-w-full bg-white border border-zinc-300">
+                  <thead>
+                    <tr>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Transaction ID</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Service</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Date of Appointment</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Time Slot</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="py-2 px-4 border border-black">1</td>
+                        <td class="py-2 px-4 border border-black">Anti-Rabies</td>
+                        <td class="py-2 px-4 border border-black">P 500.00</td>
+                        <td class="py-2 px-4 border border-black">P 500.00</td>
+                        <td class="py-2 px-4 border border-black"><span class="bg-blue-500 text-white px-2 py-1 rounded">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border border-black">2</td>
+                        <td class="py-2 px-4 border border-black">Blood Test</td>
+                        <td class="py-2 px-4 border border-black">P 300.00</td>
+                        <td class="py-2 px-4 border border-black">P 300.00</td>
+                        <td class="py-2 px-4 border border-black"><span class="bg-blue-500 text-white px-2 py-1 rounded">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border border-black">3</td>
+                        <td class="py-2 px-4 border border-black">Flu Vaccine</td>
+                        <td class="py-2 px-4 border border-black">P 350.00</td>
+                        <td class="py-2 px-4 border border-black">P 350.00</td>
+                        <td class="py-2 px-4 border border-black"><span class="bg-red-500 text-white px-2 py-1 rounded">Rejected</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </main>
+              
+      </div>
+</body>
+</html>

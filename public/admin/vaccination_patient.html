@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Records</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+    <script src="/src/script.js"></script>
+</head>
+<body>
+    <div class="flex flex-col h-screen">
+        <!-- Top navigation -->
+        <div class="bg-white p-2">
+          <div class="flex items-center">
+            <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+            <div class="ml-auto flex items-center space-x-4">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+              <span class="text-zinc-800 text-1xl">Admin_Vaccination</span>
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="ml-2 h-10 w-10" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white p-6 shadow-md">
+              <ul class="space-y-4 text-center">
+                <li><a href="vaccination.html" class="text-blue-600">Dashboard</a></li>
+                <li>
+                  <a href="#" class="text-zinc-700" id="appointments-heading">Appointments</a>
+                  <ul id="appointments-subheadings" class="hidden space-y-2 mt-2 ml-4">
+                    <li><a href="vaccination_pending.html">Pending</a></li>
+                    <li><a href="vaccination_approved.html">Approved</a></li>
+                    <li><a href="vaccination_rejected.html">Rejected</a></li>
+                    <li><a href="vaccination_completed.html">Completed</a></li>
+                  </ul>
+                </li>
+                <li><a href="vaccination_staff.html" class="text-zinc-700">Staff Management</a></li>
+                <li><a href="vaccination_patient.html" class="text-zinc-700">Patient Records</a></li>
+                <li><a href="vaccination_report.html" class="text-zinc-700">Reports</a></li>
+              </ul>
+            </nav>
+            <main class="flex-1 bg-gradient-to-r from-blue-200 to-purple-300 p-6">
+                <div class="flex justify-between items-center mb-4">
+                  <h1 class="text-2xl font-bold">Patient Records</h1>
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">+ Add New Record</button>
+                </div>
+              
+                <!-- Sort and Search bar -->
+                <div class="flex justify-between mb-4">
+                  <!-- Sort Dropdown -->
+                  <div class="flex items-center">
+                    <label for="sort" class="mr-2">Sort by:</label>
+                    <select id="sort" class="border border-zinc-300 rounded p-2 w-[205px]">
+                      <option>Equipment Name (A-Z)</option>
+                      <option>Equipment Room A</option>
+                      <option>Equipment Room B</option>
+                      <option>Equipment Room C</option>
+                    </select>
+                  </div>
+              
+                  <!-- Search bar aligned to the right -->
+                  <div>
+                    <input type="text" placeholder="Search e.g. name" class="border border-zinc-300 rounded p-2 w-80" />
+                  </div>
+                </div>
+              
+                <!-- Table -->
+                <table class="min-w-full bg-white border border-zinc-300">
+                  <thead>
+                    <tr>
+                        <th class="border border-black p-2">Patient Name</th>
+                        <th class="border border-black p-2">Date</th>
+                        <th class="border border-black p-2">Vaccine Type</th>
+                        <th class="border border-black p-2">Dose Number</th>
+                        <th class="border border-black p-2">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="border border-black p-2">Jimuel Hipana</td>
+                        <td class="border border-black p-2">07/01/24</td>
+                        <td class="border border-black p-2">Anti-Rabies</td>
+                        <td class="border border-black p-2">1st Dose</td>
+                        <td class="border border-black p-2 text-center">
+                            <button class="text-blue-500">✏️</button>
+                            <button class="text-green-500">👁️</button>
+                            <button class="text-red-500">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-black p-2">Angela Madrid</td>
+                        <td class="border border-black p-2">04/25/24</td>
+                        <td class="border border-black p-2">Hepatitis-B</td>
+                        <td class="border border-black p-2">2nd Dose</td>
+                        <td class="border border-black p-2 text-center">
+                            <button class="text-blue-500">✏️</button>
+                            <button class="text-green-500">👁️</button>
+                            <button class="text-red-500">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-black p-2">Ivy Pondivida</td>
+                        <td class="border border-black p-2">03/30/24</td>
+                        <td class="border border-black p-2">Influenza</td>
+                        <td class="border border-black p-2">1st Dose</td>
+                        <td class="border border-black p-2 text-center">
+                            <button class="text-blue-500">✏️</button>
+                            <button class="text-green-500">👁️</button>
+                            <button class="text-red-500">🗑️</button>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </main>
+              
+      </div>
+</body>
+</html>

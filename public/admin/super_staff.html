@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+    <script src="/src/javascript/blood.js" defer></script>
+</head>
+<body>
+    <div class="flex flex-col h-screen">
+    <!-- Top navigation -->
+    <div class="bg-white p-2 sticky top-0 z-50 shadow-md">
+      <div class="flex items-center">
+        <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+        <div class="ml-auto flex items-center space-x-4">
+          <!-- Notification Bell with Dropdown -->
+          <div class="relative">
+            <button id="notifDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+            </button>
+            <!-- Notification Dropdown -->
+            <div id="notifDropdownMenu"
+              class="absolute right-0 mt-2 w-80 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <div class="p-4">
+                <p class="text-sm font-semibold">Notifications</p>
+              </div>
+              <div class="border-t border-zinc-200">
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 You have a new
+                  appointment request.</a>
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 Blood bag stock
+                  updated.</a>
+              </div>
+              <div class="text-center py-2 border-t border-zinc-200">
+                <a href="#" class="text-blue-500 text-sm">View all notifications</a>
+              </div>
+            </div>
+          </div>
+          <span class="text-zinc-800 text-1xl">Admin_MHO</span>
+          <!-- User Icon with Dropdown -->
+          <div class="relative">
+            <button id="userDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="h-10 w-10" />
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="userDropdownMenu"
+              class="absolute text-center right-0 mt-2 w-40 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <a href="/src/admin/super_profile.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-blue-500 hover:text-white">Profile</a>
+              <a href="/src/homepage.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-red-500 hover:text-white">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white pt-5 shadow-md fixed h-full">
+              <ul class="space-y-5 text-1xl">
+                  <li><a href="super_admin.html" class="text-zinc-700 pl-10">Dashboard</a></li>
+                  <li><a href="super_request.html" class="text-zinc-700 pl-10">Program Requests</a></li>
+                  <li><a href="super_announcement.html" class="text-zinc-700 pl-10">Announcements</a></li>
+                  <li><a href="super_appointments.html" class="text-zinc-700 pl-10" id="appointments-heading">Appointments</a></li>
+                  <li class="bg-blue-600 rounded-r-full"><a href="super_staff.html" class="text-white block py-2 pl-10">Staff Management</a></li>
+                  <li><a href="super_patient.html" class="text-zinc-700 pl-10">Patient Records</a></li>
+                  <li><a href="super_report.html" class="text-zinc-700 pl-10">Reports</a></li>
+              </ul>
+              <div class="p-4 text-center">
+                <p class="text-sm pt-[130px] font-semibold">Logged in as:</p>
+                <p class="text-lg font-bold">Luis Mallari</p>
+                <p class="text-sm">Super Admin</p>
+              </div>
+          </nav>
+          
+      
+        <main class="flex-1 bg-blue-200 p-6 ml-60">
+          <h1 class="text-2xl font-bold mb-4">Staff Management</h1>
+      
+          <div class="flex items-center mb-4">
+            <label for="sort" class="mr-2">Sort by:</label>
+            <select id="sort" class="border border-zinc-300 rounded p-2">
+              <option>Name</option>
+              <option>Email</option>
+              <option>Phone</option>
+              <option>Employment Status</option>
+            </select>
+              <!-- Search Input for Live Filtering, aligned to the right -->
+              <input type="text" id="searchInput" placeholder="Search..."
+                class="border border-zinc-400 rounded-lg p-2 focus:outline-none focus:ring-blue-500 ml-auto" />
+          </div>
+      
+          <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-zinc-300">
+              <thead>
+                <tr>
+                  <th class="bg-blue-300 border border-black px-4 py-2">Name</th>
+                  <th class="bg-blue-300 border border-black px-4 py-2">Email</th>
+                  <th class="bg-blue-300 border border-black px-4 py-2">Phone</th>
+                  <th class="bg-blue-300 border border-black px-4 py-2">Employment Status</th>
+                  <th class="bg-blue-300 border border-black px-4 py-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentTable">
+                <tr>
+                  <td class="py-2 px-4 border border-black">Jimuel Hipana</td>
+                  <td class="py-2 px-4 border border-black">jhepana@gmail.com</td>
+                  <td class="py-2 px-4 border border-black">09123456789</td>
+                  <td class="py-2 px-4 border border-black">Part-Time</td>
+                  <td class="border border-black px-4 py-2"><button class="bg-blue-600 text-white px-2 py-1 rounded">View</button></td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border border-black">Ericson Yu</td>
+                  <td class="py-2 px-4 border border-black">ericson@gmail.com</td>
+                  <td class="py-2 px-4 border border-black">09482749173</td>
+                  <td class="py-2 px-4 border border-black">Full-Time</td>
+                  <td class="border border-black px-4 py-2"><button class="bg-blue-600 text-white px-2 py-1 rounded">View</button></td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border border-black">Ivy Pondivida</td>
+                  <td class="py-2 px-4 border border-black">ivpondivida@gmail.com</td>
+                  <td class="py-2 px-4 border border-black">09304747291</td>
+                  <td class="py-2 px-4 border border-black">Contractual</td>
+                  <td class="border border-black px-4 py-2"><button class="bg-blue-600 text-white px-2 py-1 rounded">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+</body>
+</html>

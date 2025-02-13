@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+</head>
+<body>
+  <div class="flex flex-col h-screen">
+        <!-- Top navigation -->
+        <div class="bg-white p-2">
+          <div class="flex items-center">
+            <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+            <div class="ml-auto flex items-center space-x-4">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+              <span class="text-zinc-800 text-1xl">Admin_Inventory</span>
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="ml-2 h-10 w-10" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white pt-5 shadow-md">
+              <ul class="space-y-5 text-1xl">
+                  <li><a href="inventory.html" class="text-zinc-700 block py-2 pl-10">Dashboard</a></li>
+                  <li><a href="#" class="text-zinc-700 pl-10" id="appointments-heading">Categories</a></li>
+                  <ul id="appointments-subheadings" class="hidden ml-4 mt-2 space-y-2 pl-8 text-sm text-zinc-700">
+                      <li><a href="inventory_med.html">Medicine</a></li>
+                      <li><a href="inventory_supply.html">Medical Supplies</a></li>
+                      <li><a href="inventory_equipment.html">Medical Equipment</a></li>
+                      <li><a href="inventory_vaccine.html">Vaccines</a></li>
+                  </ul>
+                  <li class="bg-blue-600 rounded-r-full"><a href="inventory_report.html" class="text-white pl-10 block py-2">Reports</a></li>
+              </ul>
+          </nav>
+          
+        <main class="flex-1 bg-gradient-to-b from-blue-200 to-purple-300 p-2">
+          
+          <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Reports</h1></div>
+          
+          <!-- Print Logs Button -->
+          <div class="mb-4 -mt-10 ml-[63px] pl-[830px]">
+            <button onclick="window.print()" class="flex items-center bg-blue-600 text-white p-2 rounded">
+                <i class="fas fa-print mr-2"></i> Print Reports
+            </button>
+          </div>
+          
+          <!-- Search bar and Sort Dropdown -->
+          <div class="flex justify-between mb-4">
+            <select class="border rounded p-2 w-[260px]">
+              <option>Sort by:</option>
+              <option>Sort by: Name/Title</option>
+              <option>Sort by: Barangay Department</option>
+              <option>Sort by: Status</option>
+              <option>Sort by: Category</option>
+              <option>Sort by: Date</option>
+            </select>
+            <input type="text" placeholder="Search e.g. name" class="border border-zinc-300 rounded p-2 w-80" />
+          </div>
+          
+          <!-- Audit Logs Table -->
+          <table class="min-w-full bg-white border border-zinc-300">
+            <thead>
+              <tr class="bg-zinc-200">
+                <th class="bg-blue-300 border border-black px-4 py-2">Category</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Item Name</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Quantity</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Expiration Date</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-black p-2">Medicine</td>
+                <td class="border border-black p-2">Paracetamol</td>
+                <td class="border border-black p-2">2000</td>
+                <td class="border border-black p-2">05/30/2029</td>
+                <td class="border border-black p-2">Tablet</td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Vaccine</td>
+                <td class="border border-black p-2">Polio Vaccine</td>
+                <td class="border border-black p-2">300</td>
+                <td class="border border-black p-2">11/15/2027</td>
+                <td class="border border-black p-2">Vials</td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Medical Supplies</td>
+                <td class="border border-black p-2">Face Mask</td>
+                <td class="border border-black p-2">5000</td>
+                <td class="border border-black p-2">09/25/2028</td>
+                <td class="border border-black p-2">Units</td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Medical Equipment</td>
+                <td class="border border-black p-2">X-Ray</td>
+                <td class="border border-black p-2">10</td>
+                <td class="border border-black p-2">N/A</td>
+                <td class="border border-black p-2">3rd Rack</td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+</body>
+</html>

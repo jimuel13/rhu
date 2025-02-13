@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Logs</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+    <script src="/src/javascript/blood.js" defer></script>
+    <style>
+      @media print {
+          body * {
+              visibility: hidden; /* Hide everything */
+          }
+          #reportTable, #reportTable *, #reportTable th, #reportTable td {
+            visibility: visible; /* Show the table and its contents */
+          }
+          #reportTable {
+            position: absolute; /* Remove it from the document flow */
+            top: 0; /* Align to the top */
+            left: 0; /* Align to the left */
+            width: 100%; /* Set width for printing */
+          }
+      }
+  </style>
+
+</head>
+<body>
+    <div class="flex flex-col h-screen">
+    <!-- Top navigation -->
+    <div class="bg-white p-2 sticky top-0 z-50 shadow-md">
+      <div class="flex items-center">
+        <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+        <div class="ml-auto flex items-center space-x-4">
+          <!-- Notification Bell with Dropdown -->
+          <div class="relative">
+            <button id="notifDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+            </button>
+            <!-- Notification Dropdown -->
+            <div id="notifDropdownMenu"
+              class="absolute right-0 mt-2 w-80 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <div class="p-4">
+                <p class="text-sm font-semibold">Notifications</p>
+              </div>
+              <div class="border-t border-zinc-200">
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 You have a new
+                  appointment request.</a>
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 Blood bag stock
+                  updated.</a>
+              </div>
+              <div class="text-center py-2 border-t border-zinc-200">
+                <a href="#" class="text-blue-500 text-sm">View all notifications</a>
+              </div>
+            </div>
+          </div>
+          <span class="text-zinc-800 text-1xl">IT_Personnel</span>
+          <!-- User Icon with Dropdown -->
+          <div class="relative">
+            <button id="userDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="h-10 w-10" />
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="userDropdownMenu"
+              class="absolute text-center right-0 mt-2 w-40 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <a href="/src/admin/it_profile.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-blue-500 hover:text-white">Profile</a>
+              <a href="/src/homepage.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-red-500 hover:text-white">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+        <div class="flex flex-1">
+          <!-- Side navigation -->
+          <nav class="w-60 bg-white pt-5 shadow-md">
+            <ul class="space-y-5 text-1xl">
+                <li><a href="it_personnel.html" class="text-zinc-700 block py-2 pl-10">Dashboard</a></li>
+                <li><a href="it_verify.html" class="text-zinc-700 pl-10">Registration Verification</a></li>
+                <li><a href="it_admin.html" class="text-zinc-700 pl-10">User Management</a></li>
+                <li><a href="add_admin.html" class="text-zinc-700 pl-10">Add New Doctor</a></li>
+                <li class="bg-blue-600 rounded-r-full"><a href="it_audit.html" class="text-white block py-2 pl-10">Audit Logs</a></li>
+            </ul>
+            <div class="p-4 text-center">
+              <p class="text-sm pt-[200px] font-semibold">Logged in as:</p>
+              <p class="text-lg font-bold">Angela P. Madrid</p>
+              <p class="text-sm">IT_Personnel</p>
+            </div>
+        </nav>
+        
+        <main class="flex-1 bg-blue-200 p-2">
+          <h1 class="text-1xl font-bold mb-8">Audit Logs</h1>
+          
+          <!-- Print Logs Button -->
+          <div class="mb-4 -mt-10 pl-[900px]">
+            <button onclick="window.print()" class="flex items-center bg-blue-600 text-white p-2 rounded">
+                <i class="fas fa-print mr-2"></i> Print Logs
+            </button>
+          </div>
+          
+          <!-- Search bar and Sort Dropdown -->
+          <div class="flex justify-between mb-4">
+            <select class="border rounded p-2 w-[260px]">
+              <option>Sort by:</option>
+              <option>Sort by: Appointment Number</option>
+              <option>Sort by: Appointment Date</option>
+            </select>
+                    <!-- Search Input for Live Filtering -->
+                    <input type="text" id="searchInput" placeholder="Search..."
+                    class="border border-zinc-400 rounded-lg p-2 focus:outline-none focus:ring-blue-500" />
+          </div>
+          
+          <!-- Audit Logs Table -->
+          <table id="reportTable" class="min-w-full bg-white border border-zinc-300">
+            <thead>
+              <tr class="bg-blue-200">
+                <th class="bg-blue-300 border border-black px-4 py-2">Date and Time</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Log ID</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">User ID</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Name</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Department</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Username</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Activity</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentTable">
+              <tr class="hover:bg-zinc-100">
+                <td class="border border-black p-2">04-13-2024 08:52:35</td>
+                <td class="border border-black p-2">1</td>
+                <td class="border border-black p-2">Admin_001</td>
+                <td class="border border-black p-2">Ivy Pondivida</td>
+                <td class="border border-black p-2">Vaccination</td>
+                <td class="border border-black p-2">Admin_Vaccine</td>
+                <td class="border border-black p-2">Login Unsuccessful</td>
+              </tr>
+              <tr class="hover:bg-zinc-100">
+                <td class="border border-black p-2">05-12-2024 14:30:48</td>
+                <td class="border border-black p-2">2</td>
+                <td class="border border-black p-2">Admin_002</td>
+                <td class="border border-black p-2">Ericson Yu</td>
+                <td class="border border-black p-2">Dental Clinic</td>
+                <td class="border border-black p-2">Admin_Dental</td>
+                <td class="border border-black p-2">Login Successful</td>
+              </tr>
+              <tr class="hover:bg-zinc-100">
+                <td class="border border-black p-2">06-05-2024 09:00:49</td>
+                <td class="border border-black p-2">3</td>
+                <td class="border border-black p-2">Admin_003</td>
+                <td class="border border-black p-2">Angela Madrid</td>
+                <td class="border border-black p-2">Blood Donation</td>
+                <td class="border border-black p-2">Admin_Blood</td>
+                <td class="border border-black p-2">User not found</td>
+              </tr>
+              <tr class="hover:bg-zinc-100">
+                <td class="border border-black p-2">05-26-2024 07:15:37</td>
+                <td class="border border-black p-2">4</td>
+                <td class="border border-black p-2">Admin_004</td>
+                <td class="border border-black p-2">Mariel Palma</td>
+                <td class="border border-black p-2">Inventory</td>
+                <td class="border border-black p-2">Admin_Inventory</td>
+                <td class="border border-black p-2">Login Successful</td>
+              </tr>
+              <tr class="hover:bg-zinc-100">
+                <td class="border border-black p-2">06-12-2024 14:54:27</td>
+                <td class="border border-black p-2">5</td>
+                <td class="border border-black p-2">Admin_005</td>
+                <td class="border border-black p-2">Cleven Javier</td>
+                <td class="border border-black p-2">Consultation</td>
+                <td class="border border-black p-2">Admin_Consultation</td>
+                <td class="border border-black p-2">Login Successful</td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+</body>
+</html>

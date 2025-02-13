@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+</head>
+<body>
+    <div class="flex flex-col h-screen">
+        <!-- Top navigation -->
+        <div class="bg-white p-2">
+          <div class="flex items-center">
+            <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+            <div class="ml-auto flex items-center space-x-4">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+              <span class="text-zinc-800 text-1xl">Admin_Inventory</span>
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="ml-2 h-10 w-10" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white pt-5 shadow-md">
+              <ul class="space-y-5 text-1xl">
+                  <li class="bg-blue-600 rounded-r-full"><a href="inventory.html" class="text-white block py-2 pl-10">Dashboard</a></li>
+                  <li><a href="#" class="text-zinc-700 pl-10" id="appointments-heading">Categories</a></li>
+                  <ul id="appointments-subheadings" class="hidden ml-4 mt-2 space-y-2 pl-8 text-sm text-zinc-700">
+                      <li><a href="inventory_med.html">Medicine</a></li>
+                      <li><a href="inventory_supply.html">Medical Supplies</a></li>
+                      <li><a href="inventory_equipment.html">Medical Equipment</a></li>
+                      <li><a href="inventory_vaccine.html">Vaccines</a></li>
+                  </ul>
+                  <li><a href="inventory_report.html" class="text-zinc-700 pl-10">Reports</a></li>
+              </ul>
+          </nav>
+          
+        <main class="flex-1 bg-gradient-to-b from-blue-200 to-purple-300 p-6">
+          <h1 class="text-2xl font-bold">Overview</h1>
+          <div class="grid grid-cols-4 gap-4 mt-4">
+            <div class="bg-white p-4 rounded-lg shadow-md flex items-center">
+              <div class="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                <img aria-hidden="true" alt="medicine" src="/src/img/med.png" class="h-16 w-16" />
+              </div>
+              <div class="text-center">
+                <div class="text-lg mb-1">Medicine</div>
+                <div class="text-4xl">84</div>
+              </div>
+            </div>
+          
+            <div class="bg-white p-4 rounded-lg shadow-md flex items-center">
+              <div class="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                <img aria-hidden="true" alt="medical-supplies" src="/src/img/supplies.png" class="h-16 w-16" />
+              </div>
+              <div class="text-center">
+                <div class="text-lg mb-1">Medical Supplies</div>
+                <div class="text-4xl">16</div>
+              </div>
+            </div>
+          
+            <div class="bg-white p-4 rounded-lg shadow-md flex items-center">
+              <div class="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                <img aria-hidden="true" alt="medical-equipment" src="/src/img/equipment.png" class="h-16 w-16" />
+              </div>
+              <div class="text-center">
+                <div class="text-lg mb-1">Medical Equipment</div>
+                <div class="text-4xl">21</div>
+              </div>
+            </div>
+          
+            <div class="bg-white p-4 rounded-lg shadow-md flex items-center">
+              <div class="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                <img aria-hidden="true" alt="vaccines" src="/src/img/vaxx.png" class="h-16 w-16"/>
+              </div>
+              <div class="text-center">
+                <div class="text-lg mb-1">Vaccines</div>
+                <div class="text-4xl">28</div>
+              </div>
+            </div>
+          </div>
+          
+          <h2 class="mt-8 text-xl font-semibold">Medicine Inventory</h2>
+          <table class="min-w-full mt-4 border-collapse border bg-zinc-200 border-zinc-300">
+            <thead>
+              <tr>
+                <th class="bg-blue-300 border border-black px-4 py-2">Medicine Name</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Dosage Form</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Dosage Strength</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Location Area Code / Rack Number</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-black p-2">Paracetamol</td>
+                <td class="border border-black p-2">Tablet</td>
+                <td class="border border-black p-2">500mg</td>
+                <td class="border border-black p-2">3rd Rack</td>
+                <td class="border border-black p-2">
+                  <div class="bg-green-500 h-2 w-20 inline-block"></div> 80/100
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Amlodipine</td>
+                <td class="border border-black p-2">Capsule</td>
+                <td class="border border-black p-2">5mg</td>
+                <td class="border border-black p-2">5th Rack</td>
+                <td class="border border-black p-2">
+                  <div class="bg-orange-500 h-2 w-20 inline-block"></div> 50/100
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Betahistine</td>
+                <td class="border border-black p-2">Tablet</td>
+                <td class="border border-black p-2">16mg</td>
+                <td class="border border-black p-2">2nd Rack</td>
+                <td class="border border-black p-2">
+                  <div class="bg-red-500 h-2 w-20 inline-block"></div> 20/100
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Propranolol</td>
+                <td class="border border-black p-2">Tablet</td>
+                <td class="border border-black p-2">10mg</td>
+                <td class="border border-black p-2">4th Rack</td>
+                <td class="border border-black p-2 text-red-500">out of stock</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 class="mt-8 text-xl font-semibold">Medical Supplies</h2>
+          <table class="min-w-full mt-4 border-collapse border bg-zinc-200 border-zinc-300">
+            <thead>
+              <tr>
+                <th class="bg-blue-300 border border-black px-4 py-2">Supply Name</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Quantity</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Batch / Lot No.</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Location Area Code / Rack Number</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-black p-2">Gloves</td>
+                <td class="border border-black p-2">200</td>
+                <td class="border border-black p-2">23129</td>
+                <td class="border border-black p-2">3rd Rack</td>
+                <td class="border border-black p-2">
+                  <div class="bg-green-500 h-2 w-20 inline-block"></div> 80/100
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Face Mask</td>
+                <td class="border border-black p-2">300</td>
+                <td class="border border-black p-2">275621</td>
+                <td class="border border-black p-2">5th Rack</td>
+                <td class="border border-black p-2">
+                  <div class="bg-orange-500 h-2 w-20 inline-block"></div> 50/100
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Bandages</td>
+                <td class="border border-black p-2">600</td>
+                <td class="border border-black p-2">28142</td>
+                <td class="border border-black p-2">2nd Rack</td>
+                <td class="border border-black p-2">
+                  <div class="bg-red-500 h-2 w-20 inline-block"></div> 20/100
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-black p-2">Gauze</td>
+                <td class="border border-black p-2">350</td>
+                <td class="border border-black p-2">84627</td>
+                <td class="border border-black p-2">4th Rack</td>
+                <td class="border border-black p-2 text-red-500">out of stock</td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+      <script>
+        // Get the heading and the subheadings list
+        const appointmentsHeading = document.getElementById('appointments-heading');
+        const appointmentsSubheadings = document.getElementById('appointments-subheadings');
+
+        // Add an event listener for clicking the heading
+        appointmentsHeading.addEventListener('click', function() {
+            // Toggle the 'hidden' class on the subheadings list
+            appointmentsSubheadings.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

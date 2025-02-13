@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Supplies</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+    <script src="/src/script.js"></script>
+</head>
+<body>
+    <div class="flex flex-col h-screen">
+        <!-- Top navigation -->
+        <div class="bg-white p-2">
+          <div class="flex items-center">
+            <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+            <div class="ml-auto flex items-center space-x-4">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+              <span class="text-zinc-800 text-1xl">Admin_Inventory</span>
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="ml-2 h-10 w-10" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white pt-5 shadow-md">
+              <ul class="space-y-5 text-1xl">
+                  <li><a href="inventory.html" class="text-zinc-700 block py-2 pl-10">Dashboard</a></li>
+                  <li><a href="#" class="text-zinc-700 pl-10" id="appointments-heading">Categories</a></li>
+                  <ul id="appointments-subheadings" class="mt-2 space-y-2 text-sm">
+                      <li><a href="inventory_med.html" class="text-zinc-700 block py-2 pl-12">Medicine</a></li>
+                      <li class="bg-blue-600 rounded-r-full"><a href="inventory_supply.html" class="text-white block py-2 pl-12">Medical Supplies</a></li>
+                      <li><a href="inventory_equipment.html" class="text-zinc-700 pl-12">Medical Equipment</a></li>
+                      <li><a href="inventory_vaccine.html" class="text-zinc-700 pl-12">Vaccines</a></li>
+                  </ul>
+                  <li><a href="inventory_report.html" class="text-zinc-700 pl-10">Reports</a></li>
+              </ul>
+          </nav>
+          
+            <main class="flex-1 bg-gradient-to-b from-blue-200 to-purple-300 p-6">
+                <div class="flex justify-between items-center mb-4">
+                  <h1 class="text-2xl font-bold">Medical Supplies Inventory</h1>
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">+ Add Item</button>
+                </div>
+              
+                <!-- Sort and Search bar -->
+                <div class="flex justify-between mb-4">
+                  <!-- Sort Dropdown -->
+                  <div class="flex items-center">
+                    <label for="sort" class="mr-2">Sort by:</label>
+                    <select id="sort" class="border border-zinc-300 rounded p-2 w-[180px]">
+                      <option>Supply Name (A-Z)</option>
+                      <option>1st Rack</option>
+                      <option>2nd Rack</option>
+                      <option>3rd Rack</option>
+                    </select>
+                  </div>
+              
+                  <!-- Search bar aligned to the right -->
+                  <div>
+                    <input type="text" placeholder="Search e.g. name" class="border border-zinc-300 rounded p-2 w-80" />
+                  </div>
+                </div>
+              
+                <!-- Table -->
+                <table class="min-w-full bg-white border border-zinc-300">
+                  <thead>
+                    <tr>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Supply Name</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Quantity</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Batch / Lot No.</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Location Area Code / Rack Number</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Status</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="border border-black p-2">Gloves</td>
+                        <td class="border border-black p-2">200</td>
+                        <td class="border border-black p-2">23129</td>
+                        <td class="border border-black p-2">3rd Rack</td>
+                      <td class="border border-black p-2">
+                        <div class="flex items-center">
+                          <div class="bg-green-500 h-2 w-24 mr-2" style="width: 80%;"></div>
+                          80/100
+                        </div>
+                      </td>
+                      <td class="border border-black p-2">
+                        <button class="text-blue-600"><i class="fas fa-edit"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-eye"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-gift"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-black p-2">Face Mask</td>
+                        <td class="border border-black p-2">600</td>
+                        <td class="border border-black p-2">25847</td>
+                        <td class="border border-black p-2">5th Rack</td>
+                      <td class="border border-black p-2">
+                        <div class="flex items-center">
+                          <div class="bg-yellow-500 h-2 w-24 mr-2" style="width: 50%;"></div>
+                          50/100
+                        </div>
+                      </td>
+                      <td class="border border-black p-2">
+                        <button class="text-blue-600"><i class="fas fa-edit"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-eye"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-gift"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-black p-2">Bandages</td>
+                        <td class="border border-black p-2">300</td>
+                        <td class="border border-black p-2">57520</td>
+                        <td class="border border-black p-2">2nd Rack</td>
+                      <td class="border border-black p-2">
+                        <div class="flex items-center">
+                          <div class="bg-red-500 h-2 w-24 mr-2" style="width: 20%;"></div>
+                          20/100
+                        </div>
+                      </td>
+                      <td class="border border-black p-2">
+                        <button class="text-blue-600"><i class="fas fa-edit"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-eye"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-gift"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-black p-2">Gauze</td>
+                        <td class="border border-black p-2">100</td>
+                        <td class="border border-black p-2">63971</td>
+                        <td class="border border-black p-2">4th Rack</td>
+                      <td class="border border-black p-2">
+                        <div class="flex items-center">
+                          <div class="bg-zinc-300 h-2 w-24 mr-2" style="width: 0%;"></div>
+                          <span class="text-red-600">out of stock</span>
+                        </div>
+                      </td>
+                      <td class="border border-black p-2">
+                        <button class="text-blue-600"><i class="fas fa-edit"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-eye"></i></button>
+                        <button class="text-blue-600"><i class="fas fa-gift"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </main>
+              
+      </div>
+</body>
+</html>

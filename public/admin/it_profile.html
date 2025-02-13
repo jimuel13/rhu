@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/src/output.css">
+  <link rel="stylesheet" href="/src/custom.css">
+  <script src="/src/javascript/blood.js" defer></script>
+</head>
+
+<body>
+  <div class="flex flex-col h-screen">
+    <!-- Top navigation -->
+    <div class="bg-white p-2 sticky top-0 z-50 shadow-md">
+      <div class="flex items-center">
+        <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-42 sm:h-12 ml-8">
+
+        <div class="ml-auto flex items-center space-x-4">
+          <!-- Notification Bell with Dropdown -->
+          <div class="relative">
+            <button id="notifDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+            </button>
+            <!-- Notification Dropdown -->
+            <div id="notifDropdownMenu"
+              class="absolute right-0 mt-2 w-80 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <div class="p-4">
+                <p class="text-sm font-semibold">Notifications</p>
+              </div>
+              <div class="border-t border-zinc-200">
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 You have a new
+                  appointment request.</a>
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 Blood bag stock
+                  updated.</a>
+              </div>
+              <div class="text-center py-2 border-t border-zinc-200">
+                <a href="#" class="text-blue-500 text-sm">View all notifications</a>
+              </div>
+            </div>
+          </div>
+          <span class="text-zinc-800 text-1xl">IT_Personnel</span>
+          <!-- User Icon with Dropdown -->
+          <div class="relative">
+            <button id="userDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="h-10 w-10" />
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="userDropdownMenu"
+              class="absolute text-center right-0 mt-2 w-40 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <a href="/src/admin/it_profile.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-blue-500 hover:text-white">Profile</a>
+              <a href="/src/homepage.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-red-500 hover:text-white">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-1">
+      <!-- Side navigation -->
+      <nav class="w-60 bg-white pt-4 shadow-md fixed h-full">
+        <ul class="space-y-5 text-1xl">
+            <li><a href="it_personnel.html" class="text-zinc-700 pl-10">Dashboard</a></li>
+            <li><a href="it_verify.html" class="text-zinc-700 pl-10">Registration Verification</a></li>
+            <li><a href="it_admin.html" class="text-zinc-700 pl-10">User Management</a></li>
+            <li><a href="add_admin.html" class="text-zinc-700 pl-10">Add New Admin</a></li>
+            <li><a href="it_audit.html" class="text-zinc-700 pl-10">Audit Logs</a></li>
+        </ul>
+        <div class="p-4 text-center">
+          <p class="text-sm pt-[200px] font-semibold">Logged in as:</p>
+          <p class="text-lg font-bold">Angela P. Madrid</p>
+          <p class="text-sm">IT_Personnel</p>
+        </div>
+
+      </nav>
+
+      <main class="flex-1 bg-blue-200 p-6 ml-60">
+        <div class="content container">
+          <h1 class="mb-3 text-2xl font-bold">User Profile</h1>
+          <hr class="my-4 border-b border-black">
+      
+          <!-- Personal Information Section -->
+          <h3 class="text-2xl font-semibold">Personal Information</h3>
+          <div class="flex flex-wrap mt-4">
+            <!-- Profile Image -->
+            <div class="md:w-1/3 text-center -ml-12">
+              <label for="imageUpload" class="cursor-pointer">
+                <img id="profileImage" src="/src/img/user.png" alt="Profile Image" class="img-fluid rounded-full mb-2 w-32 h-32 object-cover">
+              </label>
+              <!-- File input (hidden) triggered by clicking the image -->
+              <input type="file" class="form-control-file mt-2 hidden" id="imageUpload" onchange="previewImage()">
+            </div>
+      
+            <!-- Personal Info Details -->
+            <div class="md:w-2/3">
+              <form>
+                <div class="flex flex-wrap mb-3">
+                  <div class="md:w-1/2 pr-4">
+                    <label for="name" class="block text-sm font-semibold text-gray-700">Name</label>
+                    <input type="text" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="name" value="Angela Madrid" disabled>
+                  </div>
+                  <div class="md:w-1/2">
+                    <label for="email" class="block text-sm font-semibold text-gray-700">Email Address</label>
+                    <input type="email" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="email" value="ange_madrid@gmail.com" disabled>
+                  </div>
+                </div>
+                <div class="flex flex-wrap mb-3">
+                  <div class="md:w-1/2 pr-4">
+                    <label for="dob" class="block text-sm font-semibold text-gray-700">Date of Birth</label>
+                    <input type="date" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="dob" value="2002-08-20" disabled>
+                  </div>
+                  <div class="md:w-1/2">
+                    <label for="address" class="block text-sm font-semibold text-gray-700">Address</label>
+                    <input type="text" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="address" value="12 Marcos Tigla St." disabled>
+                  </div>
+                </div>
+                <div class="flex flex-wrap mb-3">
+                  <div class="md:w-1/2 pr-4">
+                    <label for="contact" class="block text-sm font-semibold text-gray-700">Contact</label>
+                    <input type="text" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="contact" value="09304758664" disabled>
+                  </div>
+                  <div class="md:w-1/2">
+                    <label for="gender" class="block text-sm font-semibold text-gray-700">Gender</label>
+                    <select class="form-select mt-1 w-full rounded-md border-gray-300 shadow-sm" id="gender" disabled>
+                      <option value="Male">Male</option>
+                      <option value="Female" selected>Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+      
+          <hr class="my-4 border-b border-black">
+      
+          <!-- Account Information Section -->
+          <h3 class="text-2xl font-semibold">Account Information</h3>
+          <form class="mt-4">
+            <div class="flex flex-wrap mb-3">
+              <div class="md:w-2/5 lg:w-1/3 xl:w-1/4 mx-auto">
+                <label for="username" class="block text-sm font-semibold text-gray-700">Username</label>
+                <input type="text" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="username" value="admin_it_personnel" disabled>
+              </div>
+              <div class="md:w-2/5 lg:w-1/3 xl:w-1/4 mx-auto relative">
+                <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
+                <input type="password" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="password" value="admin123" disabled>
+                <button type="button" class="absolute right-3 top-8 text-gray-700" onclick="togglePassword()">
+                  <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                </button>
+              </div>
+            </div>
+      
+            <!-- Button Row -->
+            <div class="flex justify-center mt-4">
+              <div class="gap-3">
+                <button type="button" class="btn btn-info w-35 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition" onclick="openModal()">Edit Profile</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      
+<!-- Edit Profile Modal -->
+<div id="editProfileModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-md w-11/12 max-w-lg mx-auto">
+      <h3 class="text-2xl font-semibold mb-4">Edit Profile</h3>
+      <form id="editForm">
+        <div class="flex flex-wrap mb-3">
+          <div class="md:w-1/2 pr-4">
+            <label for="editName" class="block text-sm font-semibold text-gray-700">Name</label>
+            <input type="text" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="editName" value="John Doe">
+          </div>
+          <div class="md:w-1/2">
+            <label for="editEmail" class="block text-sm font-semibold text-gray-700">Email Address</label>
+            <input type="email" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="editEmail" value="johndoe@example.com">
+          </div>
+        </div>
+        <div class="flex flex-wrap mb-3">
+          <div class="md:w-1/2 pr-4">
+            <label for="editDob" class="block text-sm font-semibold text-gray-700">Date of Birth</label>
+            <input type="date" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="editDob" value="1990-05-20">
+          </div>
+          <div class="md:w-1/2">
+            <label for="editAddress" class="block text-sm font-semibold text-gray-700">Address</label>
+            <input type="text" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="editAddress" value="123 Main Street, Cityville, CA">
+          </div>
+        </div>
+        <div class="flex flex-wrap mb-3">
+          <div class="md:w-1/2 pr-4">
+            <label for="editContact" class="block text-sm font-semibold text-gray-700">Contact</label>
+            <input type="text" class="form-control mt-1 w-full rounded-md border-gray-300 shadow-sm" id="editContact" value="(555) 123-4567">
+          </div>
+          <div class="md:w-1/2">
+            <label for="editGender" class="block text-sm font-semibold text-gray-700">Gender</label>
+            <select class="form-select mt-1 w-full rounded-md border-gray-300 shadow-sm" id="editGender">
+              <option value="Male" selected>Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="flex justify-between gap-3 mt-4">
+          <button type="button" class="py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700" onclick="saveChanges()">Save Changes</button>
+          <button type="button" class="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+      
+        <script>
+          // Function to toggle password visibility
+          function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePasswordIcon');
+      
+            if (passwordField.type === "password") {
+              passwordField.type = "text";
+              toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+              passwordField.type = "password";
+              toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+          }
+      
+          // Preview image when a new file is selected
+          function previewImage() {
+            const fileInput = document.getElementById('imageUpload');
+            const profileImage = document.getElementById('profileImage');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+      
+            reader.onloadend = function () {
+              profileImage.src = reader.result;
+            }
+      
+            if (file) {
+              reader.readAsDataURL(file);
+            }
+          }
+      
+          // Open the modal and populate it with current data
+          function openModal() {
+            document.getElementById('editProfileModal').classList.remove('hidden');
+      
+            // Set current values into modal fields
+            document.getElementById('editName').value = document.getElementById('name').value;
+            document.getElementById('editEmail').value = document.getElementById('email').value;
+            document.getElementById('editDob').value = document.getElementById('dob').value;
+            document.getElementById('editAddress').value = document.getElementById('address').value;
+            document.getElementById('editContact').value = document.getElementById('contact').value;
+            document.getElementById('editGender').value = document.getElementById('gender').value;
+          }
+      
+          // Close the modal
+          function closeModal() {
+            document.getElementById('editProfileModal').classList.add('hidden');
+          }
+      
+          // Save changes made in the modal
+          function saveChanges() {
+            // Get values from the modal form
+            const newName = document.getElementById('editName').value;
+            const newEmail = document.getElementById('editEmail').value;
+            const newDob = document.getElementById('editDob').value;
+            const newAddress = document.getElementById('editAddress').value;
+            const newContact = document.getElementById('editContact').value;
+            const newGender = document.getElementById('editGender').value;
+      
+            // Update the personal information section with new values
+            document.getElementById('name').value = newName;
+            document.getElementById('email').value = newEmail;
+            document.getElementById('dob').value = newDob;
+            document.getElementById('address').value = newAddress;
+            document.getElementById('contact').value = newContact;
+            document.getElementById('gender').value = newGender;
+      
+            // Close the modal after saving
+            closeModal();
+          }
+        </script>
+      </main>      
+    </div>
+</body>
+
+</html>

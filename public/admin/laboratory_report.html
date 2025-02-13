@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+    <script src="/src/javascript/blood.js" defer></script>
+    <style>
+        /* Basic styles for the table */
+        #reportTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        /* Hide the print header by default */
+        #print-header {
+            display: none;
+        }
+
+        /* Styles for printing */
+        @media print {
+            #print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 20px;
+                position: relative; /* Ensure the content is positioned correctly */
+            }
+
+        /* Center the table and adjust its width */
+        #reportTable {
+          width: 80%; /* Set the width of the table */
+          margin-left: auto;
+          margin-right: auto; /* Center the table horizontally */
+          border-collapse: collapse;
+      }
+
+      /* Table cell and header styles */
+      #reportTable th, #reportTable td {
+          border: 1px solid #000;
+          padding: 8px;
+          text-align: center;
+      }
+
+            @page {
+                margin-top: 0cm;
+                margin-bottom: 0cm;
+                margin-left: 1cm;
+                margin-right: 1cm;
+            }
+
+            body * {
+                visibility: hidden; /* Hide everything by default */
+            }
+
+            #print-header, #print-header *, #reportTable, #reportTable * {
+                visibility: visible; /* Make header and table visible */
+            }
+
+            #print-header img {
+                position: absolute; /* Position the logos relative to the header */
+                top: 0;
+            }
+
+            #print-header .center-text {
+                text-align: center;
+                margin-top: 70px; /* Push the text down to make room for logos */
+            }
+
+            #reportTable {
+                margin-top: -180px; /* Adjust to align below the header */
+                margin-left: -70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+      <!-- Header to be shown only during printing -->
+      <div id="print-header">
+        <!-- Left Logo (Sentrong Sigla) -->
+        <img src="../img/Lucban Logo.jpg" alt="Logo" class="w-20 left-0">
+    
+        <!-- Center Text -->
+        <div class="center-text">
+            <h2 class="text-lg font-extrabold">Rural Health Unit Of Lucban</h2>
+            <h3 class="text-md font-semibold">Lucban, Quezon</h3>
+            <p class="text-md font-semibold">Barangay Aliliw</p>
+            <p class="text-md font-semibold">Laboratory Report</p>
+            <p class="text-md font-semibold">January 2025</p>
+        </div>
+    
+        <!-- Right Logo (Lucban) -->
+        <img src="../img/Sentrong Sigla Logo.png" alt="Logo" class="w-[110px] right-0">
+    </div>
+    
+    
+
+  <div class="flex flex-col h-screen">
+    <!-- Top navigation -->
+    <div class="bg-white p-2 sticky top-0 z-50 shadow-md">
+      <div class="flex items-center">
+        <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+        <div class="ml-auto flex items-center space-x-4">
+          <!-- Notification Bell with Dropdown -->
+          <div class="relative">
+            <button id="notifDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+            </button>
+            <!-- Notification Dropdown -->
+            <div id="notifDropdownMenu"
+              class="absolute right-0 mt-2 w-80 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <div class="p-4">
+                <p class="text-sm font-semibold">Notifications</p>
+              </div>
+              <div class="border-t border-zinc-200">
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 You have a new
+                  appointment request.</a>
+                <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 Blood bag stock
+                  updated.</a>
+              </div>
+              <div class="text-center py-2 border-t border-zinc-200">
+                <a href="#" class="text-blue-500 text-sm">View all notifications</a>
+              </div>
+            </div>
+          </div>
+          <span class="text-zinc-800 text-1xl">Admin_Laboratory</span>
+          <!-- User Icon with Dropdown -->
+          <div class="relative">
+            <button id="userDropdownToggle" class="ml-2">
+              <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="h-10 w-10" />
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="userDropdownMenu"
+              class="absolute text-center right-0 mt-2 w-40 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+              <a href="/src/admin/laboratory_profile.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-blue-500 hover:text-white">Profile</a>
+              <a href="/src/homepage.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-red-500 hover:text-white">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white pt-5 shadow-md">
+              <ul class="space-y-5 text-1xl">
+                  <li><a href="laboratory.html" class="text-zinc-700 pl-10">Dashboard</a></li>
+                  <li><a href="laboratory_appointments.html" class="text-zinc-700 pl-10" id="appointments-heading">Appointments</a></li>
+                  <li><a href="laboratory_staff.html" class="text-zinc-700 pl-10">Staff Management</a></li>
+                  <li><a href="laboratory_test.html" class="text-zinc-700 pl-10">Test List</a></li>
+                  <li><a href="laboratory_patient.html" class="text-zinc-700 pl-10">Patient Records</a></li>
+                  <li class="bg-blue-600 rounded-r-full"><a href="laboratory_report.html" class="text-white block py-2 pl-10">Reports</a></li>
+              </ul>
+              <div class="p-4 text-center">
+                <p class="text-sm pt-[170px] font-semibold">Logged in as:</p>
+                <p class="text-lg font-bold">Jimuel V. Hipana</p>
+                <p class="text-sm">Laboratory Admin</p>
+              </div>
+          </nav>
+          
+        <main class="flex-1 bg-blue-200 p-2">
+          
+          <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Reports</h1></div>
+          
+          <!-- Print Logs Button -->
+          <div class="mb-4 -mt-10 ml-[63px] pl-[830px]">
+            <button onclick="window.print()" class="flex items-center bg-blue-600 text-white p-2 rounded">
+                <i class="fas fa-print mr-2"></i> Print Reports
+            </button>
+          </div>
+          
+          <!-- Search bar and Sort Dropdown -->
+          <div class="flex justify-between mb-4">
+            <select class="border rounded p-2 w-[260px]">
+              <option>Sort by:</option>
+              <option>Sort by: Name/Title</option>
+              <option>Sort by: Barangay Department</option>
+              <option>Sort by: Status</option>
+              <option>Sort by: Category</option>
+              <option>Sort by: Date</option>
+            </select>
+          <!-- Search Input for Live Filtering -->
+          <input type="text" id="searchInput" placeholder="Search..."
+            class="border border-zinc-400 rounded-lg p-2 focus:outline-none focus:ring-blue-500" />
+          </div>
+          
+          <!-- Audit Logs Table -->
+          <table id="reportTable" class="min-w-full bg-zinc-200 border border-zinc-300">
+            <thead>
+              <tr class="bg-zinc-200">
+                <th class="bg-blue-300 border border-black px-4 py-2">Patient Number</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Date</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Patient Name</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Age</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Gender</th>
+                <th class="bg-blue-300 border border-black px-4 py-2">Test Requested</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentTable">
+              <tr>
+                <td class="py-2 px-4 border border-black">1</td>
+                <td class="py-2 px-4 border border-black">03/30/24</td>
+                <td class="py-2 px-4 border border-black">John Armstrong</td>
+                <td class="py-2 px-4 border border-black">33</td>
+                <td class="py-2 px-4 border border-black">Male</td>
+                <td class="py-2 px-4 border border-black">Urinalysis</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border border-black">2</td>
+                <td class="py-2 px-4 border border-black">04/25/24</td>
+                <td class="py-2 px-4 border border-black">Juan De la Cruz</td>
+                <td class="py-2 px-4 border border-black">42</td>
+                <td class="py-2 px-4 border border-black">Male</td>
+                <td class="py-2 px-4 border border-black">Fecalysis</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border border-black">3</td>
+                <td class="py-2 px-4 border border-black">05/03/24</td>
+                <td class="py-2 px-4 border border-black">Jimuel Hipana</td>
+                <td class="py-2 px-4 border border-black">21</td>
+                <td class="py-2 px-4 border border-black">Male</td>
+                <td class="py-2 px-4 border border-black">Sputum</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border border-black">4</td>
+                <td class="py-2 px-4 border border-black">05/28/24</td>
+                <td class="py-2 px-4 border border-black">Angela Madrid</td>
+                <td class="py-2 px-4 border border-black">23</td>
+                <td class="py-2 px-4 border border-black">Female</td>
+                <td class="py-2 px-4 border border-black">Blood Typing</td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+     <!-- JavaScript to manage printing -->
+     <script>
+      function printReport() {
+          // Show the header
+          const header = document.getElementById('print-header');
+          header.style.display = 'block';
+
+          // Trigger the print dialog
+          window.print();
+
+          // Hide the header again after printing
+          header.style.display = 'none';
+      }
+  </script>
+</body>
+</html>

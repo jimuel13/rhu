@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turned Over Bloods</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/src/custom.css">
+    <script src="/src/javascript/blood.js" defer></script>
+</head>
+<body>
+    <div class="flex flex-col h-screen">
+        <!-- Top navigation -->
+        <div class="bg-white p-2 shadow-md">
+          <div class="flex items-center">
+            <img src="/src/img/ehealth.png" alt="ehealth" class="h-12 w-25 sm:h-12 ml-8">
+            <div class="ml-auto flex items-center space-x-4">
+        <!-- Notification Bell with Dropdown -->
+        <div class="relative">
+          <button id="notifDropdownToggle" class="ml-2">
+            <img aria-hidden="true" alt="notification-bell" src="/src/img/notif.png" class="h-6 w-6" />
+          </button>
+          <!-- Notification Dropdown -->
+          <div id="notifDropdownMenu"
+            class="absolute right-0 mt-2 w-80 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+            <div class="p-4">
+              <p class="text-sm font-semibold">Notifications</p>
+            </div>
+            <div class="border-t border-zinc-200">
+              <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 You have a new
+                appointment request.</a>
+              <a href="#" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-200">🔴 Blood bag stock
+                updated.</a>
+            </div>
+            <div class="text-center py-2 border-t border-zinc-200">
+              <a href="#" class="text-blue-500 text-sm">View all notifications</a>
+            </div>
+          </div>
+        </div>
+            <span class="text-zinc-800 text-1xl">Admin_Blood</span>
+        <!-- User Icon with Dropdown -->
+        <div class="relative">
+          <button id="userDropdownToggle" class="ml-2">
+            <img aria-hidden="true" alt="user-icon" src="/src/img/user.png" class="h-10 w-10" />
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="userDropdownMenu"
+            class="absolute text-center right-0 mt-2 w-40 bg-white border border-zinc-200 rounded-lg shadow-lg hidden z-10">
+            <a href="/src/admin/blood_profile.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-blue-500 hover:text-white">Profile</a>
+            <a href="/src/homepage.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-red-500 hover:text-white">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <div class="flex flex-1">
+            <!-- Side navigation -->
+            <nav class="w-60 bg-white pt-5 shadow-md">
+              <ul class="space-y-5 text-1xl">
+                <li>
+                  <a href="blood.html" class="text-zinc-700 pl-10">Dashboard</a>
+                </li>
+                <li>
+                  <a href="blood_appointments.html" class="text-zinc-700 pl-10">Appointments</a>
+                </li>
+                <li><a href="blood_donor.html" class="text-zinc-700 block pl-10">Donor Management</a></li>
+                <li><a href="blood_donation.html" class="text-zinc-700 pl-10">Blood Donations</a></li>
+                <li class="bg-blue-600 rounded-r-full"><a href="blood_turnover.html" class="text-white block py-2 pl-10">Turned Over</a></li>
+                <li><a href="blood_report.html" class="text-zinc-700 pl-10">Reports</a></li>
+              </ul>
+              <div class="p-4 text-center">
+                <p class="text-sm pt-[170px] font-semibold">Logged in as:</p>
+                <p class="text-lg font-bold">Jimuel V. Hipana</p>
+                <p class="text-sm">Blood Donation Admin</p>
+              </div>
+            </nav>
+            
+            <main class="flex-1 bg-blue-200 p-6">
+                <div class="flex justify-between items-center mb-4">
+                  <h1 class="text-2xl font-bold">Turned Over</h1>
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">+ New Entry</button>
+                </div>
+              
+                <!-- Sort and Search bar -->
+                <div class="flex justify-between mb-4">
+                  <!-- Sort Dropdown -->
+                  <div class="flex items-center">
+                    <label for="sort" class="mr-2">Sort by:</label>
+                    <select id="sort" class="border border-zinc-300 rounded p-2 w-[205px]">
+                      <option>Bloodbank Name (A-Z)</option>
+                      <option>Date</option>
+                      <option>Blood Type (A+)</option>
+                      <option>Number</option>
+                    </select>
+                  </div>
+              
+                   <!-- Search Input for Live Filtering -->
+                   <input type="text" id="searchInput" placeholder="Search..." class="border border-zinc-400 rounded-lg p-2 focus:outline-none ml-auto focus:ring-blue-500" />
+                  </div>
+              
+                <!-- Table -->
+                <table class="min-w-full bg-white border border-zinc-300">
+                  <thead>
+                    <tr>
+                        <th class="bg-blue-300 border border-black px-4 py-2">No.</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Date</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Blood Bank Name</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Blood Type</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Volume (ml)</th>
+                        <th class="bg-blue-300 border border-black px-4 py-2">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="appointmentTable">
+                    <tr>
+                        <td class="py-2 px-4 border border-black">1</td>
+                        <td class="py-2 px-4 border border-black">04/12/2023</td>
+                        <td class="py-2 px-4 border border-black">Philippine Red Cross Laguna Chapter</td>
+                        <td class="py-2 px-4 border border-black">A+</td>
+                        <td class="py-2 px-4 border border-black">350ml</td>
+                        <td class="py-2 px-4 border border-black">
+                          <button class="text-blue-500">✏️</button>
+                          <button class="text-green-500">👁️</button>
+                          <button class="text-red-500">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border border-black">2</td>
+                        <td class="py-2 px-4 border border-black">05/19/2023</td>
+                        <td class="py-2 px-4 border border-black">DLSUMC Blood Bank</td>
+                        <td class="py-2 px-4 border border-black">B+</td>
+                        <td class="py-2 px-4 border border-black">320ml</td>
+                        <td class="py-2 px-4 border border-black">
+                          <button class="text-blue-500">✏️</button>
+                          <button class="text-green-500">👁️</button>
+                          <button class="text-red-500">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border border-black">3</td>
+                        <td class="py-2 px-4 border border-black">05/26/2023</td>
+                        <td class="py-2 px-4 border border-black">Blood Bank - Mary Mediatrix Medical Center</td>
+                        <td class="py-2 px-4 border border-black">O+</td>
+                        <td class="py-2 px-4 border border-black">270ml</td>
+                        <td class="py-2 px-4 border border-black">
+                          <button class="text-blue-500">✏️</button>
+                          <button class="text-green-500">👁️</button>
+                          <button class="text-red-500">🗑️</button>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </main>    
+      </div>
+      <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+        <div class="bg-[#C0BCBC] rounded-lg p-6 w-full max-w-2xl relative">
+            <button id="closeModal" class="absolute top-2 right-2 text-gray-800 hover:text-gray-900">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="mb-4 text-center text-xl font-bold text-gray-800">Add New Entry</h2>
+            <form action="#">
+                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    <div class="w-full">
+                        <label for="receivedBy" class="block mb-2 text-sm font-medium text-gray-800">Received By</label>
+                        <input type="text" name="receivedBy" id="receivedBy" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Receiver's Name" required="">
+                    </div>
+                    <div class="w-full">
+                        <label for="bloodType" class="block mb-2 text-sm font-medium text-gray-800">Blood Type</label>
+                        <select id="bloodType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <option selected="">Select Blood Type</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="turnoverDate" class="block mb-2 text-sm font-medium text-gray-800">Date of Turnover</label>
+                        <input type="date" name="turnoverDate" id="turnoverDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="">
+                    </div>
+                    <div class="w-full">
+                        <label for="turnoverVolume" class="block mb-2 text-sm font-medium text-gray-800">Turnover Volume (ml)</label>
+                        <input type="number" name="turnoverVolume" id="turnoverVolume" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Volume in ml" required="">
+                    </div>
+                </div>
+                <div class="flex justify-between mt-4">
+                  <button type="submit" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-700">
+                      Add Entry
+                  </button>
+                  <button type="reset" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-gray-800 bg-gray-200 rounded-lg hover:bg-gray-300">
+                    Reset
+                </button>
+              </div>
+            </form>
+        </div>
+      </div>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('modal');
+            const addButton = document.querySelector('button.bg-blue-600'); // Add New Entry button
+            const closeButton = document.getElementById('closeModal');
+      
+            // Show modal on button click
+            addButton.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+            });
+      
+            // Close modal when close button is clicked
+            closeButton.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+      
+            // Optional: Close modal when clicking outside of it
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+        });
+      </script>
+      
+</body>
+</html>
